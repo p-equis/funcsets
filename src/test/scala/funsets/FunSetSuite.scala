@@ -109,4 +109,20 @@ class FunSetSuite extends FunSuite {
       assert(!contains(s, 3), "Union 3")
     }
   }
+
+  test("intersection only contains elements from both sets") {
+    new TestSets {
+      val s = intersect(twoAndFour, s2)
+      assert(contains(s, 2), "Should include 2")
+      assert(!contains(s, 4), "Should exclude 4")
+    }
+  }
+
+  test("diff only contains elements the left set has but the right set doesnt") {
+    new TestSets {
+      val s = diff(twoAndFour, s2)
+      assert(!contains(s, 2), "Should exclude 2")
+      assert(contains(s, 4), "Should include 4")
+    }
+  }
 }
