@@ -152,4 +152,14 @@ class FunSetSuite extends FunSuite {
       assert(!exists(twoAndFour, x => x % 2 != 0), "none are odd")
     }
   }
+
+  test("map transforms the entire set") {
+    new TestSets {
+      val threeAndFive = map(twoAndFour, x => x + 1)
+      assert(contains(threeAndFive, 3), "3 exists in this set")
+      assert(contains(threeAndFive, 5), "5 exists in this set")
+      assert(!contains(threeAndFive, 2), "2 is no longer in the set")
+      assert(!contains(threeAndFive, 4), "4 is no longer in the set")      
+    }
+  }
 }
