@@ -145,4 +145,11 @@ class FunSetSuite extends FunSuite {
       assert(!forall(negativeOneThousand, x => x > 0), "not all are greater than zero")
     }
   }
+
+  test("exists determines when at least one element satisfies a predicate") {
+    new TestSets {
+      assert(exists(twoAndFour, x => x == 4), "4 exists in this set")
+      assert(!exists(twoAndFour, x => x % 2 != 0), "none are odd")
+    }
+  }
 }
