@@ -77,6 +77,8 @@ class FunSetSuite extends FunSuite {
     val s1 = singletonSet(1)
     val s2 = singletonSet(2)
     val s3 = singletonSet(3)
+    val twoAndFour = union(singletonSet(2), singletonSet(4))
+    val twoAndFourAndFive = union(twoAndFour, singletonSet(5))
   }
 
   /**
@@ -123,6 +125,15 @@ class FunSetSuite extends FunSuite {
       val s = diff(twoAndFour, s2)
       assert(!contains(s, 2), "Should exclude 2")
       assert(contains(s, 4), "Should include 4")
+    }
+  }
+
+  test("filter only contains elements matching the predicate") {
+    new TestSets {
+      val s = filter(twoAndFourAndFive, x => x % 2 == 0)
+      assert(contains(s, 2), "Should include 2")
+      assert(contains(s, 4), "Should include 4")
+      assert(!contains(s, 5), "Should exclude 5")
     }
   }
 }
