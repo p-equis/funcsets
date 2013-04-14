@@ -79,6 +79,7 @@ class FunSetSuite extends FunSuite {
     val s3 = singletonSet(3)
     val twoAndFour = union(singletonSet(2), singletonSet(4))
     val twoAndFourAndFive = union(twoAndFour, singletonSet(5))
+    val negativeOneThousand = singletonSet(-1000)
   }
 
   /**
@@ -134,6 +135,14 @@ class FunSetSuite extends FunSuite {
       assert(contains(s, 2), "Should include 2")
       assert(contains(s, 4), "Should include 4")
       assert(!contains(s, 5), "Should exclude 5")
+    }
+  }
+
+  test("should be able to run a predicate on a full range of a set") {
+    new TestSets {
+      assert(forall(twoAndFour, x => x % 2 == 0), "all are even")
+      assert(!forall(twoAndFour, x => x % 2 != 0), "not all are odd")
+      assert(!forall(negativeOneThousand, x => x > 0), "not all are greater than zero")
     }
   }
 }
